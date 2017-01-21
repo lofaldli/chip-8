@@ -2,7 +2,14 @@ language: c
 compiler: 
   - gcc
 before_install:
-  - sudo apt-get install libsdl1.2-dev libsdl-gfx1.2-dev check
+  - sudo apt-get update -qq
+addons:
+  apt:
+    packages:
+      - cmake
+      - libsdl1.2-dev 
+      - libsdl-gfx1.2-dev 
+      - check
 install:
   - mkdir build/ 
   - cd build/
