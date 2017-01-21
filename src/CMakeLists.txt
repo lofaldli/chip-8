@@ -11,8 +11,6 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
 
 add_executable (chip8 ${chip8_sources})
 
-set_property(TARGET chip8 PROPERTY C_STANDARD 99)
-
 find_package(SDL)
 find_package(SDL_gfx)
 find_package(Threads)

@@ -3,6 +3,8 @@ project (chip8 C)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
+set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
+
 enable_testing()
 
 add_subdirectory (src)
