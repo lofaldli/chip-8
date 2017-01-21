@@ -1,0 +1,62 @@
+LD V0 0x00     ; V0 = 0 (sprite)
+LD V1 0x00     ; V1 = 0 (x coord)
+LD V2 0x00     ; V2 = 0 (x coord)
+
+.START
+
+LD   F V0      ; I = V0
+DRAW V1 V2 0x5 ; draw sprite
+ADD  V0 0x01   ; V0 = V0 + 1 (sprite)
+ADD  V1 0x08   ; V1 = V1 + 8 (x coord)
+
+LD   F V0      ; I = V0
+DRAW V1 V2 0x5 ; draw sprite
+ADD  V0 0x01   ; V0 = V0 + 1 (sprite)
+ADD  V1 0x08   ; V1 = V1 + 8 (x coord)
+
+LD   F V0      ; I = V0
+DRAW V1 V2 0x5 ; draw sprite
+ADD  V0 0x01   ; V0 = V0 + 1 (sprite)
+ADD  V1 0x08   ; V1 = V1 + 8 (x coord)
+
+LD   F V0      ; I = V0
+DRAW V1 V2 0x5 ; draw sprite
+ADD  V0 0x01   ; V0 = V0 + 1 (sprite)
+LD   V1 0x00   ; V1 = 0 (x coord)
+ADD  V2 0x08   ; V2 = V2 + 8 (y coord)
+
+
+SEQ  V0 0x10   ; skip next if V0 == 15
+JMP  .START
+
+
+LD   V0 0x00
+LD   V1 0x38
+LD   V2 0x00
+LD   V3 0x40
+
+
+.TIMER
+
+SNE  V0 0x10
+LD   V0 0x00
+
+LD   F  V0
+DRAW V1 V2 0x5
+ADD  V0 0x01
+
+LD   DT V3   ; delay timer = V3
+
+.WAIT
+
+LD   VE DT
+SEQ  VE 0x00
+JMP  .WAIT
+
+DRAW V1 V2 0x5
+
+JMP  .TIMER
+
+
+RET            ; exit
+
