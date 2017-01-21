@@ -1,4 +1,4 @@
-# chip-8 
+# chip-8 [![Build Status](https://travis-ci.org/lofaldli/chip-8.svg?branch=master)](https://travis-ci.org/lofaldli/chip-8)
 
 this is a [chip-8][1] emulator written in C inspired by [these][2] [guys][3]
 
