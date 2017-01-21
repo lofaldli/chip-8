@@ -13,6 +13,7 @@ find_package (Threads)
 find_package (Check)
 
 add_executable (test_chip8 ${test_chip8_sources} )
+set_property(TARGET chip8 PROPERTY C_STANDARD 99)
 add_definitions (-fprofile-arcs -ftest-coverage)
 target_link_libraries (test_chip8
     -fprofile-arcs
