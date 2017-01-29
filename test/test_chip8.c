@@ -62,6 +62,20 @@ START_TEST(test_chip8_reg) {
 
 } END_TEST
 
+START_TEST(test_chip8_keys) {
+    uint8_t i;
+
+    for (i=0; i<NUM_KEYS; i++) {
+        ck_assert_uint_eq(chip8_key_get(c,i), 0);
+    }
+
+    for (i=0; i<NUM_KEYS; i++) {
+        chip8_key_set(c,i,1);
+        ck_assert_uint_eq(chip8_key_get(c,i), 1);
+    }
+
+} END_TEST
+
 
 
 Suite* chip8_suite(void) {
@@ -71,6 +85,7 @@ Suite* chip8_suite(void) {
     tcase_add_test(tc_core, test_chip8_init);
     tcase_add_test(tc_core, test_chip8_pc);
     tcase_add_test(tc_core, test_chip8_reg);
+    tcase_add_test(tc_core, test_chip8_keys);
 
     Suite* s = suite_create("chip8");
     suite_add_tcase(s, tc_core);

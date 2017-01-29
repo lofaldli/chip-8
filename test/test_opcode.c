@@ -65,6 +65,21 @@ START_TEST(test_flow_skip) {
 
 } END_TEST
 
+START_TEST(test_flow_skip_keys) {
+    uint16_t pc;
+
+    for (uint8_t key=0; key<NUM_KEYS; key++) {
+        pc = chip8_pc_get(c);
+        c->V[0] = key; c->keys[key] = 0;
+        EXEC(0xe09e) ASSERT_PC(pc+2)
+
+        pc = chip8_pc_get(c);
+        c->V[0] = key; c->keys[key] = 1;
+        EXEC(0xe09e) ASSERT_PC(pc+4)
+    }
+
+} END_TEST
+
 START_TEST(test_flow_jump) {
 
     EXEC(0x1abc) ASSERT_PC(0xabc)
@@ -202,6 +217,7 @@ Suite* opcode_suite(void) {
     tcase_add_checked_fixture(tc_flow, setup, teardown);
     tcase_add_test(tc_flow, test_flow_subroutine);
     tcase_add_test(tc_flow, test_flow_skip);
+    tcase_add_test(tc_flow, test_flow_skip_keys);
     tcase_add_test(tc_flow, test_flow_jump);
 
     TCase* tc_math = tcase_create("math");
